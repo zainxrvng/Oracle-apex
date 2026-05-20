@@ -1,30 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
-  title: "Chart of Accounts | FinCorp Enterprise",
-  description: "Enterprise Chart of Accounts Management",
+  title: "LedgerFlow | Chart of Accounts",
+  description: "Finance module powered by Oracle ORDS",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={cn("light", "h-full", "antialiased", inter.variable, "font-sans")}
-    >
-      <body className="min-h-full h-full overflow-hidden">{children}</body>
+    <html lang="en" className={manrope.variable}>
+      <body className="font-sans antialiased">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
